@@ -1,0 +1,32 @@
+public class CreateWorkOrderLineItem {
+    public WorkOrderLineItem CreateWorkOrderLineItemRecord(WorkOrder WO){
+        WorkOrderLineItem WOLI=new WorkOrderLineItem();
+        if(WO.AssetId!=null)WOLI.AssetId=WO.AssetId;
+		if(WO.Subject!=null)WOLI.Subject=WO.Subject;
+        if(WO.Description!=null)WOLI.Description=WO.Description;
+		if(WO.Street!=null)WOLI.Street=WO.Street;
+		if(WO.City!=null)WOLI.City=WO.City;
+		if(WO.PostalCode!=null)WOLI.PostalCode=WO.PostalCode;
+		if(WO.State!=null)WOLI.State=WO.State;
+		if(WO.Country!=null)WOLI.Country=WO.Country;
+        if(WO.WorkTypeId!=null)WOLI.WorkTypeId=WO.WorkTypeId;
+        WOLI.WorkOrderId=Wo.Id;
+        //if(WO.!=null)WOLI.=WO.;
+        return WOLI;
+    }
+    Public void  CreateWorkOrderLineItemRecords(List<WorkOrder> WO_List){
+        List<WorkOrderLineItem> WOLI_List=new List<WorkOrderLineItem>();
+        for(WorkOrder WO:WO_List){
+		
+			
+            WOLI_List.add(CreateWorkOrderLineItemRecord(WO));
+        //
+        insert WOLI_List;
+    }
+}
+
+
+
+Trigger.CreateWOLITrigger on WorkOrder (After Insert) (
+CreateWorkOrderLineItem.CreateWorkOrderLineItemRecord(Trigger.new);
+)
